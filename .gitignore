@@ -1,0 +1,14 @@
+# Java class files
+*.class
+
+# OS X trash
+.DS_Store
+
+# generated or outer files
+target/
+
+# Intellij project files
+.idea
+*.iml
+*.ipr
+*.iws
