@@ -1,6 +1,7 @@
 import org.querki.jquery._
 import org.scalajs.dom.document
 
+import scala.scalajs.js
 import scala.scalajs.js.annotation._
 
 @JSExportTopLevel("MainDom")
@@ -16,7 +17,7 @@ object MainDom {
 
   def useDom(): Unit = {
     val hello = document.createElement("div")
-    hello.appendChild(document.createTextNode("Hello world with DOM!"))
+    hello.appendChild(document.createTextNode(s"Hello world with DOM at ${new js.Date}!"))
     document.body.appendChild(hello)
   }
 
@@ -26,7 +27,6 @@ object MainDom {
     $("#clickTest").click(onClick _)
   }
 
-  def onClick(e: JQueryEventObject): Unit = {
+  def onClick(e: JQueryEventObject): Unit =
     $("body").append("<div>Clicked!</div>")
-  }
 }

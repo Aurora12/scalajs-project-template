@@ -6,6 +6,7 @@
 
 # generated or outer files
 target/
+bin/
 
 # Intellij project files
 .idea
