@@ -6,6 +6,6 @@ object Main {
 
   def main(args: Array[String]): Unit = {
     println(getClass.getName + s": Hello console world at ${new js.Date}!")
-    new ExternalJsUtil().test()
+    new ExternalJsUtil().testMethod()
   }
 }

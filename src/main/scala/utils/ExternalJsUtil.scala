@@ -7,6 +7,6 @@ import scala.scalajs.js.annotation.{JSGlobal, JSName}
 @JSGlobal("ExternalJsUtil")
 class ExternalJsUtil extends js.Object {
 
-  @JSName("method")
-  def test(): Unit = js.native
+  @JSName("test")
+  def testMethod(): Unit = js.native
 }

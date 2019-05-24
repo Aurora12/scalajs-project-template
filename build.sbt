@@ -5,6 +5,8 @@ scalaVersion := "2.12.8"
 scalaJSUseMainModuleInitializer := true
 scalafmtOnCompile := true
 
+val scalajsOutputDir = Def.settingKey[File]("directory for javascript files output by scalajs")
+
 scalacOptions in ThisBuild ++= Seq(
   "-encoding",
   "utf-8",
@@ -45,5 +47,6 @@ lazy val project =
       jsDependencies ++= Seq(
         "org.webjars" % "jquery" % "2.2.1" / "jquery.js" minified "jquery.min.js",
         ProvidedJS / "js/example.js"
-      )
+      ),
+      scalajsOutputDir := baseDirectory.value / "bin"
     )
