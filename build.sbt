@@ -1,3 +1,5 @@
+import complete.DefaultParsers._
+
 name := "scalajs-project-template"
 version := "0.1"
 scalaVersion := "2.12.8"
@@ -33,11 +35,34 @@ lazy val wartremoverSettings = Seq(
   )
 )
 
+lazy val targetDirectory = settingKey[File]("Target build directory")
+lazy val buildRelease = inputKey[Unit]("Build release application")
+lazy val buildDev = inputKey[Unit]("Build dev application")
+
+targetDirectory := baseDirectory.value / "bin"
+
+artifactPath in (Compile, fastOptJS) := targetDirectory.value / "js" / "main.js"
+artifactPath in (Compile, fullOptJS) := targetDirectory.value / "js" / "main.js"
+artifactPath in (Compile, packageJSDependencies) := targetDirectory.value / "js" / "dependencies.js"
+clean ~= { _ =>
+  IO.delete(new File("./bin"))
+}
+
+Compile / fastOptJS ~= { result =>
+  println(s"\nfastOptJS result:\n${result.data.getPath}\n")
+  result
+}
+Compile / fullOptJS ~= { result =>
+  println(s"\nfullOptJS result:\n${result.data.getPath}\n")
+  result
+}
+
 lazy val project =
   Project("ScalajsProjectTemplate", file("."))
     .enablePlugins(ScalaJSPlugin)
     .settings(
       wartremoverSettings,
+      targetDirectory := baseDirectory.value / "bin",
       libraryDependencies ++= Seq(
         "org.scala-js" %%% "scalajs-dom" % "0.9.7",
         "org.querki" %%% "jquery-facade" % "1.2"
@@ -45,5 +70,51 @@ lazy val project =
       jsDependencies ++= Seq(
         "org.webjars" % "jquery" % "2.2.1" / "jquery.js" minified "jquery.min.js",
         ProvidedJS / "js/example.js"
-      )
+      ),
+      buildRelease := {
+        val log = streams.value.log
+        log.info(s"Starting RELEASE build")
+
+        val keys = ResourceKeys(
+          baseDirectory.value / "resources" / "static",
+          baseDirectory.value / "resources" / "templates",
+          baseDirectory.value / "src" / "main" / "resources",
+          "Scala.js Project Template",
+          version.value,
+          isRelease = true
+        )
+
+        BuildUtils.collectResources(targetDirectory.value, keys)
+      },
+      buildRelease := buildRelease.dependsOn(Compile / compile, Compile / fullOptJS).evaluated,
+      buildDev := {
+        val log = streams.value.log
+        log.info(s"Starting DEV build")
+
+        val keys = ResourceKeys(
+          baseDirectory.value / "resources" / "static",
+          baseDirectory.value / "resources" / "templates",
+          baseDirectory.value / "src" / "main" / "resources",
+          "Scala.js Project Template (dev version)",
+          version.value,
+          isRelease = false
+        )
+
+        BuildUtils.collectResources(targetDirectory.value, keys)
+      },
+      buildDev := buildDev.dependsOn(Compile / compile, Compile / fastOptJS).evaluated
     )
+
+// shortcuts for clean & build
+
+commands += Command.command("release") { s =>
+  "clean" ::
+    "buildRelease" ::
+    s
+}
+
+commands += Command.command("dev") { s =>
+  "clean" ::
+    "buildDev" ::
+    s
+}

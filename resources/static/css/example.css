@@ -1,0 +1,15 @@
+body {
+	font-size: 15px;
+	padding: 15px;
+	color: blue;
+	background-image: "url('img/bg.png')";
+	background-repeat: repeat;
+}
+
+pre {
+    background-color: #eeeeee;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    display: inline-block;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>%productName%</title>
+    <link rel="stylesheet" type="text/css" href="css/example.css">
+  </head>
+  <body>
+    <h1>%productName%</h1>
+
+    <script type="text/javascript" src="js/example.js"></script>
+    <script type="text/javascript" src="js/dependencies.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript">
+      console.log("Main class with DOM: " + MainDom);
+      var info = {
+        "productName": "%productName%",
+        "isRelease": "%isRelease%",
+        "version": "%version%",
+      };    	
+      MainDom.start(info);
+    </script>
+  </body>
+</html>

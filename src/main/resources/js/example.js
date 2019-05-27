@@ -1,6 +1,6 @@
 function ExternalJsUtil() {
-	console.log("Creating ExternalJsUtil instance in JavaScript!")
+	console.log("Creating ExternalJsUtil instance in JavaScript from Scala!")
 }
 ExternalJsUtil.prototype.test = function() {
-	console.log("Calling ExternalJsUtil.test() in JavaScript!");
+	console.log("Calling ExternalJsUtil.test() in JavaScript from Scala!");
 }

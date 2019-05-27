@@ -7,9 +7,25 @@ import scala.scalajs.js.annotation._
 @JSExportTopLevel("MainDom")
 object MainDom {
 
+  case class BuildInfo(productName: String, isRelease: Boolean, version: String)
+
+  private var _buildInfo = BuildInfo(getClass.getName, isRelease = false, "0.0.0")
+  def buildInfo: BuildInfo = _buildInfo
+
+  def getString(source: js.Dynamic, name: String): Option[String] = {
+    val value = source.selectDynamic(name)
+    if (js.isUndefined(value) || value == null) None else Option(value.toString)
+  }
+
   @JSExport
-  def start(): Unit = {
+  def start(info: js.Dynamic): Unit = {
     println(getClass.getName + ": Hello DOM world!")
+
+    _buildInfo = BuildInfo(
+      productName = getString(info, "productName").getOrElse(_buildInfo.productName),
+      isRelease = getString(info, "isRelease").fold(false)(_ == "true"),
+      version = getString(info, "version").getOrElse(_buildInfo.version),
+    )
 
     useDom()
     useJquery()
@@ -19,6 +35,10 @@ object MainDom {
     val hello = document.createElement("div")
     hello.appendChild(document.createTextNode(s"Hello world with DOM at ${new js.Date}!"))
     document.body.appendChild(hello)
+
+    val info = document.createElement("pre")
+    info.appendChild(document.createTextNode(buildInfo.toString))
+    document.body.appendChild(info)
   }
 
   def useJquery(): Unit = {
