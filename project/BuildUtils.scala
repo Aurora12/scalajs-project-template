@@ -10,8 +10,6 @@ case class ResourceKeys(staticDir: File,
 object BuildUtils {
 
   def collectResources(targetDir: File, keys: ResourceKeys): Unit = {
-    println(s"Collecting static files from ${keys.staticDir.getPath}")
-    
     copyDirContent(keys.staticDir, targetDir)
     copyDirContent(keys.providedJsDir, targetDir)
 
@@ -30,8 +28,10 @@ object BuildUtils {
 
     println(s"Resources were copied to ${targetDir.getPath}")
   }
-  
+
   def copyDirContent(sourceDir: File, targetDir: File): Unit = {
+    println(s"Collecting static files from ${sourceDir.getPath}")
+
     val dirs = (sourceDir * "*").filter(_.isDirectory).get
     val files = (sourceDir * "*").filter(_.isFile).get
     dirs.foreach { d =>
