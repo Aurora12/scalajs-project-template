@@ -36,7 +36,7 @@ lazy val wartremoverSettings = Seq(
 )
 
 lazy val targetDirectory = settingKey[File]("Target build directory")
-lazy val buildVersion = settingKey[String]("Build version from -Drelease_version parameter.")
+lazy val buildVersion = settingKey[String]("Build version from -Dversion parameter.")
 lazy val buildRelease = inputKey[Unit]("Build release application")
 lazy val buildDev = inputKey[Unit]("Build dev application")
 
