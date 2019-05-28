@@ -1,12 +1,12 @@
 # Scala.js Project Template
 
-Generic template for a Scala.js project with DOM and jQuery.
+Generic template for a [Scala.js](https://www.scala-js.org/doc/tutorial/basic/index.html) project with [DOM](https://github.com/scala-js/scala-js-dom) and [jQuery](https://github.com/jducoeur/jquery-facade).
 
 The project is in no way a minimal one, as it aims to showcase everything you will probably end up doing.
 
 The project doesn't contain any UI components framework (see Scala.js-React Project Template for that). 
 
-* Shows mapping code in both directions: Scala.js &lt;—&gt; JavaScript.
+* Shows mapping code in both directions: [Scala.js &lt;—&gt; JavaScript](https://www.scala-js.org/doc/interoperability/facade-types.html).
 * Shows using utility Scala code in SBT build task.
 * Shows using libraries from WebJars and from external JavaScript files.
 * Shows passing parameters to build and generating resources from templates.
