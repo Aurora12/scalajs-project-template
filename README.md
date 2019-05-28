@@ -35,3 +35,11 @@ Start SBT with `sbt -mem 2000 -Dversion="0.1.0"`. The memory setting here preven
 * Use `release` or `dev` commands to *clean*, *build* and *collect resources*. 
 * Use `buildRelease` or `buildDev` to *build* and *collect resources*.
 * Use `fastOptJS` or `fullOptJS` as you normally would with any Scala.js project to just *build main javascript files*.  
+
+## Project structure
+
+* `/bin` – this is where all build files go. The directory is created by build commands and is deleted completely by `clean` command.
+* `/project` – a standard SBT project directory, which contains `BuildUtils.scala`, that does file manipulation during build.
+* `/resources` – contains static resources (like css and images) and templates (html) that get processed by build logic.
+* `/src/main/resources/` – the standard directory for js libraries. See `js/example.js` there.
+
