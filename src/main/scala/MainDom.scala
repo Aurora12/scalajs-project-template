@@ -44,6 +44,7 @@ object MainDom {
   def useJquery(): Unit = {
     $("body").append("<div>Hello world with jQuery!</div>")
     $("body").append("<div id='clickTest'>Click me!</div>")
+    $("body").append("<div>See console log for more info.</div>")
     $("#clickTest").click(onClick _)
   }
 

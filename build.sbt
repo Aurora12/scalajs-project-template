@@ -1,7 +1,7 @@
 import complete.DefaultParsers._
 
 name := "scalajs-project-template"
-version := "0.1"
+version := "0.0.1"
 scalaVersion := "2.12.8"
 
 scalaJSUseMainModuleInitializer := true
@@ -36,6 +36,7 @@ lazy val wartremoverSettings = Seq(
 )
 
 lazy val targetDirectory = settingKey[File]("Target build directory")
+lazy val buildVersion = settingKey[String]("Build version from -Drelease_version parameter.")
 lazy val buildRelease = inputKey[Unit]("Build release application")
 lazy val buildDev = inputKey[Unit]("Build dev application")
 
@@ -61,6 +62,7 @@ lazy val project =
   Project("ScalajsProjectTemplate", file("."))
     .enablePlugins(ScalaJSPlugin)
     .settings(
+      buildVersion := sys.props.get("version").getOrElse(version.value),
       wartremoverSettings,
       targetDirectory := baseDirectory.value / "bin",
       libraryDependencies ++= Seq(
@@ -80,7 +82,7 @@ lazy val project =
           baseDirectory.value / "resources" / "templates",
           baseDirectory.value / "src" / "main" / "resources",
           "Scala.js Project Template",
-          version.value,
+          buildVersion.value,
           isRelease = true
         )
 
@@ -96,7 +98,7 @@ lazy val project =
           baseDirectory.value / "resources" / "templates",
           baseDirectory.value / "src" / "main" / "resources",
           "Scala.js Project Template (dev version)",
-          version.value,
+          buildVersion.value,
           isRelease = false
         )
 
