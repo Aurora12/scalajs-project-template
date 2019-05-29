@@ -2,7 +2,7 @@
 
 A somewhat advanced template for a [Scala.js](https://www.scala-js.org/doc/tutorial/basic/index.html) project with [DOM](https://github.com/scala-js/scala-js-dom) and [jQuery](https://github.com/jducoeur/jquery-facade).
 
-The project is in no way a minimal one, as it aims to showcase everything you will probably end up doing and a real-world app.
+The project is in no way a minimal one, as it aims to showcase everything one will probably end up doing in a real-world app.
 
 The project doesn't contain any UI components framework. 
 
