@@ -4,7 +4,7 @@ Generic template for a [Scala.js](https://www.scala-js.org/doc/tutorial/basic/in
 
 The project is in no way a minimal one, as it aims to showcase everything you will probably end up doing.
 
-The project doesn't contain any UI components framework (see Scala.js-React Project Template for that). 
+The project doesn't contain any UI components framework. 
 
 * Shows mapping code in both directions: [Scala.js &lt;—&gt; JavaScript](https://www.scala-js.org/doc/interoperability/facade-types.html).
 * Shows using utility Scala code in SBT build task.
