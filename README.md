@@ -14,7 +14,7 @@ The project doesn't contain any UI components framework (see Scala.js-React Proj
 
 ## Usage
 
-Build target folder is `bin` in project root. That's where all resources are copied and where the `fastOptJs`/`fullOptJS` output is directed.
+Build target folder is `bin` in project root. That's where all of the resources are copied to and where the `fastOptJs`/`fullOptJS` output is directed.
 
 The `version` parameter is optional, it defaults to the `version` setting in `build.sbt`.
 
