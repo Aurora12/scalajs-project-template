@@ -1,5 +1,3 @@
-import complete.DefaultParsers._
-
 name := "scalajs-project-template"
 version := "0.0.1"
 scalaVersion := "2.12.8"
